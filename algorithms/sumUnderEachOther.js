@@ -1,4 +1,4 @@
-const sumTwoNumbers2 = (num1, num2) => {
+const sumTwoNumbers = (num1, num2) => {
   const longNumLength = Math.max(num1.length, num2.length);
   const sum = [];
   let savedNum = 0;
