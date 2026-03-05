@@ -35,7 +35,7 @@ const sumTwoNumbers = (num1, num2) => {
     }
   }
 
- if (keepNumber) return "1" + sum;
+  if (keepNumber) return "1" + sum;
 
- return sum;
+  return sum;
 };
