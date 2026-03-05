@@ -1,41 +1,26 @@
-const sumTwoNumbers = (num1, num2) => {
+const sumTwoNumbers2 = (num1, num2) => {
   const longNumLength = Math.max(num1.length, num2.length);
-
-  let long;
-  let short;
-
-  if (num1.length > num2.length) {
-    long = num1.split("");
-    short = num2.split("");
-  } else {
-    long = num2.split("");
-    short = num1.split("");
-  }
-
-  let keepNumber = false;
-  let sum = "";
+  const sum = [];
+  let savedNum = 0;
 
   for (let i = 0; i < longNumLength; ++i) {
-    const hasBottomNum = i < short.length;
+    let currSum =
+      (+num1[num1.length - i - 1] || 0) + (+num2[num2.length - i - 1] || 0);
 
-    let currSum = hasBottomNum
-      ? Number(long[long.length - 1 - i]) + Number(short[short.length - 1 - i])
-      : Number(long[long.length - 1 - i]);
-
-    if (keepNumber) {
-      currSum += 1;
-      keepNumber = false;
+    if (savedNum) {
+      currSum += savedNum;
+      savedNum = 0;
     }
 
-    if (currSum < 10) {
-      sum = String(currSum) + sum;
+    if (currSum > 9) {
+      sum.push(currSum - 10);
+      savedNum = 1;
     } else {
-      sum = String(currSum - 10) + sum;
-      keepNumber = true;
+      sum.push(currSum);
     }
   }
 
-  if (keepNumber) return "1" + sum;
+  if (savedNum) sum.push(savedNum);
 
-  return sum;
+  return sum.reverse().join("");
 };
